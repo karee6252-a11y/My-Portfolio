@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kareem Mousa — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0E17;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e2d47;
+    --border-hover: #2a4a72;
+    --accent: #4A9FDB;
+    --accent-light: #7EC0EE;
+    --accent-pale: rgba(74,159,219,0.12);
+    --text: #E8EFF8;
+    --text-muted: #6B84A0;
+    --text-dim: #3D5470;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,23,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--accent-light);
+    letter-spacing: -0.3px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-light); }
+
+  section { padding: 5rem 2.5rem; max-width: 900px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    background: var(--accent-pale);
+    border: 0.5px solid rgba(74,159,219,0.25);
+    padding: 4px 12px 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-light);
+  }
+  .hero-desc {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 420px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #0A0E17;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 0.5px solid var(--border);
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-1px); }
+
+  /* AVATAR PHOTO */
+  .avatar-wrap {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--border-hover);
+    box-shadow: 0 0 0 4px rgba(74,159,219,0.08);
+  }
+  .avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    border: none;
+    border-top: 0.5px solid var(--border);
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    letter-spacing: -0.8px;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    line-height: 1.15;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .about-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.6rem;
+  }
+  .about-card h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.6rem;
+  }
+  .about-card p { font-size: 15px; color: var(--text); line-height: 1.6; }
+  .about-card .big {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .skill-group {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+  }
+  .skill-group-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px;
+    background: var(--accent-pale);
+    color: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 400;
+    border: 0.5px solid rgba(74,159,219,0.15);
+  }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .project-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--border-hover); }
+  .project-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--text-dim);
+    line-height: 1;
+    min-width: 36px;
+    user-select: none;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.65;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .project-tag {
+    font-size: 11px;
+    background: var(--accent-pale);
+    color: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+    border: 0.5px solid rgba(74,159,219,0.2);
+  }
+
+  /* STRENGTHS */
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  .strength-item {
+    text-align: center;
+    padding: 1.4rem 1rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s;
+  }
+  .strength-item:hover { border-color: var(--border-hover); }
+  .strength-icon { font-size: 20px; margin-bottom: 0.5rem; display: block; }
+  .strength-label { font-size: 12px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0.5px solid rgba(74,159,219,0.2);
+  }
+  .contact-icon svg { width: 16px; height: 16px; fill: var(--accent-light); }
+  .contact-label { font-size: 11px; color: var(--text-dim); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+  .contact-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 0.5px solid var(--border);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; }
+    .avatar-wrap { width: 120px; height: 120px; }
+    .hero h1 { font-size: 36px; }
+    .about-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
+    .strengths-grid { grid-template-columns: repeat(3, 1fr); }
+    section { padding: 3rem 1.5rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">KM</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <span class="hero-tag"><span class="dot"></span> Available for opportunities</span>
+    <h1>Kareem<br><em>Mousa</em></h1>
+    <p class="hero-desc">AI graduate &amp; full-stack developer building smart systems that bridge hardware and software — from embedded electronics to web platforms.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- ضع صورتك في نفس الفولدر واسمها photo.jpg -->
+  <div class="avatar-wrap">
+    <img src="photo.jpg" alt="Kareem Mousa">
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Background</p>
+  <h2 class="section-title">About me</h2>
+  <div class="about-grid">
+    <div class="about-card">
+      <h4>Education</h4>
+      <p class="big">Mansoura University</p>
+      <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">B.Sc. Artificial Intelligence · 2025</p>
+    </div>
+    <div class="about-card">
+      <h4>Location</h4>
+      <p class="big">Egypt</p>
+      <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">New Damietta · Open to remote</p>
+    </div>
+    <div class="about-card">
+      <h4>Languages</h4>
+      <p style="font-size: 15px; color: var(--text);">Arabic <span style="color: var(--text-muted);">— Native</span></p>
+      <p style="font-size: 15px; color: var(--text); margin-top: 4px;">English <span style="color: var(--text-muted);">— Very Good</span></p>
+    </div>
+    <div class="about-card">
+      <h4>Focus</h4>
+      <p style="font-size: 15px; color: var(--text); line-height: 1.6;">AI systems, web development, and embedded hardware — solving real problems with clean code.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Technical expertise</p>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-title">Web</p>
+      <div class="skill-tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Programming</p>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">C++</span><span class="tag">C#</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">AI & Data</p>
+      <div class="skill-tags">
+        <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">Scikit-learn</span>
+        <span class="tag">OpenCV</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Databases</p>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span><span class="tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Embedded</p>
+      <div class="skill-tags">
+        <span class="tag">Arduino</span><span class="tag">GPRS</span><span class="tag">Hardware</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Tools</p>
+      <div class="skill-tags">
+        <span class="tag">GitHub</span><span class="tag">Excel</span><span class="tag">Firebase</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Selected work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-list">
+
+    <div class="project-card">
+      <span class="project-num">01</span>
+      <div>
+        <h3 class="project-title">Smart Energy Distribution System</h3>
+        <p class="project-desc">Graduation project — an intelligent system for real-time energy monitoring and distribution. Tracks Volt, Amp, and Watt live, connects Arduino to a web interface with dynamic graphs, uses AI to predict and locate faults, and sends SMS alerts via GPRS. A complete hardware + software integrated solution.</p>
+        <div class="project-tags">
+          <span class="project-tag">Arduino</span>
+          <span class="project-tag">AI / Fault Detection</span>
+          <span class="project-tag">Web Interface</span>
+          <span class="project-tag">GPRS / SMS</span>
+          <span class="project-tag">Real-time Data</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-num">02</span>
+      <div>
+        <h3 class="project-title">School Website</h3>
+        <p class="project-desc">Designed and developed a full institutional website for a private school — showcasing school info, services, and contact. Fully responsive across all devices with a clean, easy-to-navigate interface.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML / CSS / JS</span>
+          <span class="project-tag">Responsive Design</span>
+          <span class="project-tag">Bilingual</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-num">03</span>
+      <div>
+        <h3 class="project-title">Teacher Platform</h3>
+        <p class="project-desc">Built a web platform for an educator to manage and present courses. Students browse lessons through a clean interface, while an admin portal handles content and user management.</p>
+        <div class="project-tags">
+          <span class="project-tag">Web App</span>
+          <span class="project-tag">Admin Portal</span>
+          <span class="project-tag">Course Management</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <p class="section-label">What I bring</p>
+  <h2 class="section-title">Strengths</h2>
+  <div class="strengths-grid">
+    <div class="strength-item"><span class="strength-icon">⚡</span><p class="strength-label">Problem Solving</p></div>
+    <div class="strength-item"><span class="strength-icon">⏱</span><p class="strength-label">Time Management</p></div>
+    <div class="strength-item"><span class="strength-icon">🤝</span><p class="strength-label">Teamwork</p></div>
+    <div class="strength-item"><span class="strength-icon">🎨</span><p class="strength-label">UX Focus</p></div>
+    <div class="strength-item"><span class="strength-icon">✦</span><p class="strength-label">Clean Code</p></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's connect</p>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <a class="contact-card" href="tel:+201015319782">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div><p class="contact-label">Phone</p><p class="contact-value">01015319782</p></div>
+    </a>
+    <a class="contact-card" href="mailto:karee6252@gmail.com">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div><p class="contact-label">Email</p><p class="contact-value">karee6252@gmail.com</p></div>
+    </a>
+    <a class="contact-card" href="https://www.linkedin.com/in/kareem-mousa-a425a2346" target="_blank">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      </div>
+      <div><p class="contact-label">LinkedIn</p><p class="contact-value">kareem-mousa</p></div>
+    </a>
+    <div class="contact-card" style="cursor: default;">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div><p class="contact-label">Location</p><p class="contact-value">New Damietta, Egypt</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Kareem Ali Mousa &nbsp;·&nbsp; AI Graduate &amp; Developer &nbsp;·&nbsp; 2025</p>
+</footer>
+
+</body>
+</html>
